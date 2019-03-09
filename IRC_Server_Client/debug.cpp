@@ -25,8 +25,9 @@ void debug::WriteCriticalMessage(std::string message)
 	if (m_DebugLevel == DebugLevel::CriticalLevel ||
 		m_DebugLevel == DebugLevel::ImportantLevel ||
 		m_DebugLevel == DebugLevel::InformationalLevel)
-
+	{
 		debug::WriteMessage(message);
+	}
 }
 
 
@@ -34,7 +35,9 @@ void debug::WriteImportantMessage(std::string message)
 {
 	if (m_DebugLevel == DebugLevel::CriticalLevel ||
 		m_DebugLevel == DebugLevel::ImportantLevel)
+	{
 		debug::WriteMessage(message);
+	}
 }
 
 
@@ -42,6 +45,8 @@ void debug::WriteImportantMessage(std::string message)
 void debug::WriteInformationalMessage(std::string message)
 {
 	if (m_DebugLevel == DebugLevel::InformationalLevel)
+	{
 		debug::WriteMessage(message);
+	}
 }
 

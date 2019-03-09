@@ -20,6 +20,7 @@ enum class DebugLevel
 };
 
 
+// debug will never be instantiated.
 class debug {
 private:
 	debug() = delete;
