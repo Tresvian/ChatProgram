@@ -6,8 +6,7 @@
 using namespace std;
 
 
-//generic
-void debug::WriteMessage(const std::string& message, DebugLevel level)
+void debug::WriteMessage(const std::string& message, DebugLevel level) //generic 
 {
 	if (level == DebugLevel::CriticalLevel)
 		cout << "[CRITICAL] " << message << endl;
@@ -18,7 +17,6 @@ void debug::WriteMessage(const std::string& message, DebugLevel level)
 	else if (level == DebugLevel::InformationalLevel)
 		cout << "[INFORMATIONAL] " << message << endl;
 }
-//generic 
 
 
 void debug::SetDebugLevel(DebugLevel x)
