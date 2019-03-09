@@ -14,6 +14,7 @@ Informational  messages Critical, Important, and Informational.
 Use SetDebugLevel(ENUM DebugLevel) for the levels.
 */
 
+
 enum class DebugLevel
 {
 	NoLevel, CriticalLevel, ImportantLevel, InformationalLevel
@@ -28,7 +29,7 @@ private:
 	static DebugLevel m_DebugLevel;
 
 	// Generic
-	static void WriteMessage(std::string message);
+	static void WriteMessage(std::string& message);
 
 public:
 	

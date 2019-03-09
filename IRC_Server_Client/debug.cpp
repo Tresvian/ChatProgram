@@ -7,7 +7,7 @@ using namespace std;
 
 
 //generic
-void debug::WriteMessage(std::string message)
+void debug::WriteMessage(std::string& message)
 {
 	cout << message << endl;
 }
@@ -39,7 +39,6 @@ void debug::WriteImportantMessage(std::string message)
 		debug::WriteMessage(message);
 	}
 }
-
 
 
 void debug::WriteInformationalMessage(std::string message)
