@@ -29,16 +29,16 @@ private:
 	static DebugLevel m_DebugLevel;
 
 	// Generic
-	static void WriteMessage(std::string& message);
+	static void WriteMessage(const std::string& message);
 
 public:
 	
 	static void SetDebugLevel(DebugLevel x);
 
-	static void WriteCriticalMessage (std::string message);
+	static void WriteCriticalMessage (const std::string message);
 
-	static void WriteImportantMessage (std::string message);
+	static void WriteImportantMessage (const std::string message);
 
-	static void WriteInformationalMessage (std::string message);	
+	static void WriteInformationalMessage (const std::string message);	
 };
 

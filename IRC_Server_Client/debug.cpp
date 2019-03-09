@@ -7,7 +7,7 @@ using namespace std;
 
 
 //generic
-void debug::WriteMessage(std::string& message)
+void debug::WriteMessage(const std::string& message)
 {
 	cout << message << endl;
 }
@@ -20,7 +20,7 @@ void debug::SetDebugLevel(DebugLevel x)
 }
 
 
-void debug::WriteCriticalMessage(std::string message)
+void debug::WriteCriticalMessage(const std::string message)
 {
 	if (m_DebugLevel == DebugLevel::CriticalLevel ||
 		m_DebugLevel == DebugLevel::ImportantLevel ||
@@ -31,7 +31,7 @@ void debug::WriteCriticalMessage(std::string message)
 }
 
 
-void debug::WriteImportantMessage(std::string message)
+void debug::WriteImportantMessage(const std::string message)
 {
 	if (m_DebugLevel == DebugLevel::CriticalLevel ||
 		m_DebugLevel == DebugLevel::ImportantLevel)
@@ -41,7 +41,7 @@ void debug::WriteImportantMessage(std::string message)
 }
 
 
-void debug::WriteInformationalMessage(std::string message)
+void debug::WriteInformationalMessage(const std::string message)
 {
 	if (m_DebugLevel == DebugLevel::InformationalLevel)
 	{
