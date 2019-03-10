@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+
+
 /*
 Sets friendly console logging into the window.
 
@@ -17,15 +19,18 @@ debug::WriteLEVEL(string message) for outputting.
 */
 
 
-enum class DebugLevel
+enum DebugLevel
 {
 	NoLevel, CriticalLevel, ImportantLevel, InformationalLevel
 };
 
 
-namespace debug {
-
-	DebugLevel m_DebugLevel;
+class debug {
+private:
+	debug() = delete;
+	~debug() = delete;
+public:
+	static DebugLevel m_DebugLevel;
 
 	static std::vector<std::string>* m_ConsoleLog;
 

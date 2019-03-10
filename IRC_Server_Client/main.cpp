@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "debug.h"
+
 /*
 	argv[1] will be reserved for debug:
 		NoLevel        messages nothing.
@@ -17,7 +19,7 @@ int main(int argc, char* argv[])
 	// Transfer argv into a vector
 	std::vector<std::string> argVector;
 
-	for (int i = 1; argc < i; ++i)
+	for (int i = 1; i < argc ; ++i)
 	{
 		argVector.push_back(argv[i]);
 	}
@@ -36,5 +38,8 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
+	std::cout << "Program exited gracefully" << std::endl;
+	debug::WriteCriticalMessage(std::string("Program exited successfully"));
+	system("pause");
 	return 0;
 }

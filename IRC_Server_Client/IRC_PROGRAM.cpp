@@ -11,7 +11,7 @@ int IRC_Program(const std::vector<std::string>& args)
 		{
 			if (eachArg == std::string("CriticalLevel"))
 			{
-				debug::SetDebugLevel(DebugLevel::CriticalLevel);
+				debug::SetDebugLevel(DebugLevel::InformationalLevel);
 				debug::WriteInformationalMessage(std::string("Started debugger at CriticalLevel"));
 				continue;
 			}
@@ -27,12 +27,12 @@ int IRC_Program(const std::vector<std::string>& args)
 				debug::WriteInformationalMessage(std::string("Started debugger at InformationaLevel"));
 				continue;
 			}
-			else
-			{
-				debug::SetDebugLevel(DebugLevel::NoLevel);
-			}
 			debug::WriteImportantMessage(std::string("Passed in argument: ") + eachArg);
 		}
+	}
+	else
+	{
+		debug::SetDebugLevel(DebugLevel::NoLevel);
 	}
 	// End debugger signature
 
@@ -42,24 +42,22 @@ int IRC_Program(const std::vector<std::string>& args)
 
 	// Start main routine.
 	int tickRate;
-	bool validTickRate = false;
 
 
 	std::cout << "Enter the tick rate in milliseconds:" << std::endl;
-	while (!validTickRate)
+	std::cin >> tickRate;
+
+	while (std::cin.fail())
 	{
-		validTickRate = true;
+		std::cin.clear();
+
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+		debug::WriteCriticalMessage(std::string("Invalid tick rate entered"));
+
+		std::cout << "Please enter a proper tick rate." << std::endl;
 
 		std::cin >> tickRate;
-
-		if (std::cin.fail())
-		{
-			std::cin.clear();
-			std::cin.ignore();
-			std::cout << "Please enter a proper tick rate." << std::endl;
-			validTickRate = false;
-			debug::WriteCriticalMessage(std::string("Invalid tick rate entered"));
-		}
 	}
 	
 

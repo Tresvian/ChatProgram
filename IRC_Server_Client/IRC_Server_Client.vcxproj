@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug.h" />
+    <ClInclude Include="enums.h" />
     <ClInclude Include="IRC_Program.h" />
     <ClInclude Include="networkFactory.h" />
   </ItemGroup>

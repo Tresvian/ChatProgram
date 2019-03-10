@@ -38,6 +38,9 @@
     <ClInclude Include="networkFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="enums.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\IRC_Chat_Program.docx" />

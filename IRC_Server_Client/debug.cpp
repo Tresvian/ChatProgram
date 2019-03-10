@@ -4,8 +4,13 @@
 #include <fstream>
 #include <exception>
 
+
 using namespace std;
 
+
+DebugLevel debug::m_DebugLevel = DebugLevel::NoLevel;
+
+vector<string>* debug::m_ConsoleLog;
 
 void debug::WriteMessage(const std::string& message, DebugLevel level) //generic 
 {
@@ -31,7 +36,7 @@ void debug::WriteMessage(const std::string& message, DebugLevel level) //generic
 
 void debug::SetDebugLevel(DebugLevel x)
 {
-	m_DebugLevel = x;
+	debug::m_DebugLevel = x;
 }
 
 
@@ -67,14 +72,10 @@ void debug::WriteInformationalMessage(const std::string message)
 
 void debug::OutLogDump()
 {
-	fstream* file;
-
-	file->open("IRC_Program_Log.txt", fstream::out);
+	fstream file("IRC_Program_Log.txt");
 
 	for (const auto &EveryLine : *m_ConsoleLog)
 	{
-		*file << EveryLine << "\n";
+		file << EveryLine << "\n";
 	}
-
-	file->close();
 }
