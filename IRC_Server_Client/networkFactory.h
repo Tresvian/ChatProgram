@@ -5,4 +5,4 @@
 #include <string>
 
 
-// todo
+void StartListening(const int& tickRate, std::atomic<bool>& endProgramIndicator, std::atomic<bool>& endProgramIndicatorResult);

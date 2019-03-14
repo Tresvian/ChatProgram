@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+#include <memory>
 
 /*
 Sets friendly console logging into the window.
@@ -32,7 +32,7 @@ private:
 public:
 	static DebugLevel m_DebugLevel;
 
-	static std::vector<std::string>* m_ConsoleLog;
+	static std::shared_ptr<std::vector<std::string>> m_ConsoleLog;
 
 	static void WriteMessage(const std::string& message, DebugLevel level); // Generic
 	
