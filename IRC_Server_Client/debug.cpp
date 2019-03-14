@@ -3,16 +3,15 @@
 #include "debug.h"
 #include <fstream>
 #include <exception>
-
+#include <memory>
 
 using namespace std;
 
-
 DebugLevel debug::m_DebugLevel = DebugLevel::NoLevel;
 
-vector<string>* debug::m_ConsoleLog;
+shared_ptr<vector<string>> debug::m_ConsoleLog = make_shared<vector<string>>();
 
-void debug::WriteMessage(const std::string& message, DebugLevel level) //generic 
+void debug::WriteMessage(const string& message, DebugLevel level) //generic 
 {
 	if (level == DebugLevel::CriticalLevel)
 	{
