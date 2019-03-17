@@ -1,9 +1,6 @@
 #include "IRC_Program.h"
-#include <exception>
-#include <iostream>
-#include <vector>
-#include <string>
 #include "debug.h"
+
 
 /*
 	argv[1] will be reserved for debug:
@@ -14,10 +11,12 @@
 
 */
 
+
 int main(int argc, char* argv[])
 {
 	// Transfer argv into a vector
 	std::vector<std::string> argVector;
+	int returnResult;
 
 	for (int i = 1; i < argc ; ++i)
 	{
@@ -25,21 +24,10 @@ int main(int argc, char* argv[])
 	}
 
 	// Initialize, pass in args
-	try
-	{
-		IRC_Program(argVector);
-	}
-
-	// Exception Handling
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-		system("pause");
-		return 1;
-	}
+	returnResult = IRC_Program(argVector);
 
 	std::cout << "Program exited gracefully" << std::endl;
 	debug::WriteCriticalMessage(std::string("Program exited successfully"));
 	system("pause");
-	return 0;
+	return returnResult;
 }

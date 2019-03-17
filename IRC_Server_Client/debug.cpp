@@ -1,9 +1,7 @@
-#include <string>
-#include <iostream>
 #include "debug.h"
 #include <fstream>
 #include <exception>
-#include <memory>
+
 
 using namespace std;
 
@@ -13,6 +11,13 @@ shared_ptr<vector<string>> debug::m_ConsoleLog = make_shared<vector<string>>();
 
 void debug::WriteMessage(const string& message, DebugLevel level) //generic 
 {
+	// Make sure size isn't getting out of control here.
+	if (m_ConsoleLog->size() > 1000)
+	{
+		m_ConsoleLog->erase(m_ConsoleLog->begin());
+	}
+
+	// Write message according to passed in DebugLevel
 	if (level == DebugLevel::CriticalLevel)
 	{
 		cout << "[CRITICAL] " << message << endl;

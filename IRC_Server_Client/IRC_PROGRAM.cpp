@@ -1,9 +1,4 @@
-#include <vector>
-#include <string>
 #include "debug.h"
-#include "networkFactory.h"
-#include <atomic>
-#include <thread>
 #include "boost/asio.hpp"
 
 int IRC_Program(const std::vector<std::string>& args)
@@ -38,54 +33,24 @@ int IRC_Program(const std::vector<std::string>& args)
 	{
 		debug::SetDebugLevel(DebugLevel::NoLevel);
 	}
-	// End debugger signature
-
-
-	debug::WriteImportantMessage(std::string("Starting main routine"));
+	// End debugger
 
 
 	// Start main routine.
-	int tickRate;
-
-
-	std::cout << "Enter the tick rate in milliseconds:" << std::endl;
-	std::cin >> tickRate;
-
-	while (std::cin.fail())
-	{
-		std::cin.clear();
-
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-		debug::WriteCriticalMessage(std::string("Invalid tick rate entered"));
-
-		std::cout << "Please enter a proper tick rate." << std::endl;
-
-		std::cin >> tickRate;
-	}
-	
+	debug::WriteImportantMessage(std::string("Starting main routine"));
 
 	// Creating atomic bool to signal for end or not.
-	std::atomic<bool> endProgramIndicator;
-	std::atomic<int> endProgramIndicatorResult;
-	endProgramIndicator = false;
+	std::atomic<bool> endProgramIndicator( false );
+	std::atomic<int> endProgramIndicatorResult( 0 );
+
+	// connection to OS
+	boost::asio::io_context iocontext;
+
+	// 
 	
-
-	std::cout << "Beginning listening..." << std::endl;
-	
-
-	// Continously runs in the background, ended by endProgramIndicator
-	std::thread networkFactory(StartListening, tickRate, endProgramIndicator, endProgramIndicatorResult);
-
-	// Loop for idle prompt
-	IdlePrompt(endProgramIndicator);
-	networkFactory.join();
-
-	return 0;
 }
 
-
-int IdlePrompt(std::atomic<bool>& endProgramIndicator)
+static int IdlePrompt(std::atomic<bool>& endProgramIndicator)
 {
 	using namespace std;
 	string command;
@@ -129,6 +94,10 @@ int IdlePrompt(std::atomic<bool>& endProgramIndicator)
 		{
 			// todo change user password
 			continue;
+		}
+		else
+		{
+			debug::WriteInformationalMessage(std::string("Ran unrecognizable command in idle prompt"));
 		}
 	}
 }
