@@ -123,12 +123,10 @@
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="IRC_PROGRAM.cpp" />
-    <ClCompile Include="networkFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debug.h" />
     <ClInclude Include="IRC_Program.h" />
-    <ClInclude Include="networkFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\IRC_Chat_Program.docx" />
