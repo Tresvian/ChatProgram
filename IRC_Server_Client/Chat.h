@@ -19,8 +19,9 @@ acceptorThread is the thread that the acceptor will listen and pass
 class Chat
 {
 private:
-	boost::asio::io_context               io_context;
+	boost::asio::io_context&              io_context;
 	boost::asio::ip::tcp::acceptor        acceptor;
+	std::atomic<bool>*                    endProgramIndicator;
 
 	std::shared_ptr<std::vector<Session>> sessionList;
 
@@ -30,12 +31,15 @@ private:
 	std::thread*                          acceptorThread;
 
 public:
-	Chat(boost::asio::io_context& io, int port, int socketCount);
+	Chat(boost::asio::io_context& io, int port, int socketCount,
+		 std::atomic<bool>& endProgramIndicator);
 
-	void listen();
+	void listen(Chat* selfChat);
 
-	void synch(Session& client);
+	void resynch(Session& client);
 	void updateMessage(std::string& message);
 	void sendMessage(std::string& message);
+private:
+	void wait(Chat* selfChat);
 };
 

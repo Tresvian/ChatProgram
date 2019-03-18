@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <fstream>
+#include <exception>
 
 /*
 Sets friendly console logging into the window.

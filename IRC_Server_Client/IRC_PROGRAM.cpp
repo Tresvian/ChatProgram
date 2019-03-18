@@ -1,5 +1,5 @@
-#include "debug.h"
-#include "boost/asio.hpp"
+#include "IRC_Program.h"
+
 
 int IRC_Program(const std::vector<std::string>& args)
 {
@@ -41,12 +41,15 @@ int IRC_Program(const std::vector<std::string>& args)
 
 	// Creating atomic bool to signal for end or not.
 	std::atomic<bool> endProgramIndicator( false );
-	std::atomic<int> endProgramIndicatorResult( 0 );
 
 	// connection to OS
 	boost::asio::io_context iocontext;
 
-	// 
+	std::thread chatInstance(Chat(iocontext, 5005, 10, endProgramIndicator));
+
+	IdlePrompt(endProgramIndicator);
+
+	return 0;
 	
 }
 
