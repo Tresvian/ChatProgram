@@ -23,18 +23,18 @@ enum socketStatus { Unused, Connected };
 class Session
 {
 private:
-	socketStatus                          currentStatus;
-	boost::asio::ip::tcp::socket          socket;
-	std::thread*                          thread;
-	Chat*                                 parentChat;
+	socketStatus currentStatus;
+	boost::asio::ip::tcp::socket socket;
+	std::thread* thread;
+	Chat* parentChat;
 
 public:
 	Session(boost::asio::io_context& io, Chat* parentChat);
 
-	void                          run(Session* selfSession);
+	void run(Session* selfSession);
 
-	void                          setStatus(socketStatus&& x);
-	socketStatus&                 getStatus() const;
+	void setStatus(socketStatus&& x);
+	socketStatus& getStatus() const;
 	boost::asio::ip::tcp::socket& getSocket();
-	void                          receiveMessage();
+	void receiveMessage();
 };

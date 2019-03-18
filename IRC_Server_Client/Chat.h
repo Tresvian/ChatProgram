@@ -19,20 +19,20 @@ acceptorThread is the thread that the acceptor will listen and pass
 class Chat
 {
 private:
-	boost::asio::io_context&              io_context;
-	boost::asio::ip::tcp::acceptor        acceptor;
-	std::atomic<bool>*                    endProgramIndicator;
+	boost::asio::io_context& io_context;
+	boost::asio::ip::tcp::acceptor acceptor;
+	std::atomic<bool>* endProgramIndicator;
 
-	std::shared_ptr<std::vector<Session>> sessionList;
+	std::vector<Session> sessionList;
 
-	std::mutex                            messageListLock;
-	std::deque<std::string>               messageList;
+	std::mutex messageListLock;
+	std::deque<std::string> messageList;
 
-	std::thread*                          acceptorThread;
+	std::thread* acceptorThread;
 
 public:
-	Chat(boost::asio::io_context& io, int port, int socketCount,
-		 std::atomic<bool>& endProgramIndicator);
+	Chat(boost::asio::io_context io, int port, int socketCount,
+		 std::atomic<bool>* endProgramIndicator);
 
 	void listen(Chat* selfChat);
 
